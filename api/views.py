@@ -24,9 +24,6 @@ def api(request):
 
         res = sorted(res, key=lambda x: int(x['distance']))
 
-        response = JsonResponse(res, safe=False)
-        pprint(response)
-        # res = json.dumps(res, ensure_ascii=False)
-        print(type(res))
+        response = json.dumps(res, ensure_ascii=False)
         return HttpResponse(response, content_type='application/json; charset=utf-8')
         # return HttpResponse(x)
