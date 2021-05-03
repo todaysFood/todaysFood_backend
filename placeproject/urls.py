@@ -24,7 +24,6 @@ from rest_framework import routers, permissions
 
 urlpatterns = [
     path('api/', include('api.urls')),
-    path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 ]
 
