@@ -1,7 +1,5 @@
-from django.http import HttpResponse, JsonResponse, HttpRequest
-from django.core import serializers
-from . import kakao_local, weather_api, location_code_fetcher
-from pprint import pprint
+from django.http import HttpResponse
+from library.kakao import location_code_fetcher, kakao_local, weather_api
 import json
 
 def index(request):
