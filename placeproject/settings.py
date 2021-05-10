@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts',
-    'drf_yasg',
     'corsheaders',
+    'django_extensions',
     'api.apps.PlaceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
