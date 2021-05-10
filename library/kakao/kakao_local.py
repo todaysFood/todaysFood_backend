@@ -10,7 +10,7 @@ class kakao_local:
 
         url = 'https://dapi.kakao.com/v2/local/'
         self.rest_api_key = '7b8fcbc7d75b30e51cee4e9ee3634957'
-        self.headers = {"Authorization" : "KakaoAK {}".format(self.rest_api_key)}
+        self.headers = {"Authorization": "KakaoAK {}".format(self.rest_api_key)}
 
         self.URL_address = url + 'search/address.json'
         self.URL_region = url + 'geo/coord2regioncode.json'
@@ -21,7 +21,7 @@ class kakao_local:
 
     def search_address(self, query, analyze_type=None, page=None, size=None):
 
-        params = {"query" : f"{query}"}
+        params = {"query": f"{query}"}
 
         if analyze_type != None:
             params["analyze_type"] = f"{analyze_type}"
@@ -38,9 +38,10 @@ class kakao_local:
 
         return document
 
-    def search_keyword(self, query, category_group_code=None, x=None, y=None, radius=None, rect=None, page=None, size=None, sort=None):
+    def search_keyword(self, query, category_group_code=None, x=None, y=None, radius=None, rect=None, page=None,
+                       size=None, sort=None):
 
-        params = {"query" : f"{query}"}
+        params = {"query": f"{query}"}
 
         if x != None:
             params['x'] = x
@@ -63,9 +64,7 @@ class kakao_local:
         if size:
             params['size'] = size
 
-
         res = requests.get(self.URL_keyword, headers=self.headers, params=params)
 
         document = json.loads(res.text)
         return document
-

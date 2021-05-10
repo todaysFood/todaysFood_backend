@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from library.kakao import location_code_fetcher, kakao_local, weather_api
 import json
 
+
 def index(request):
     return HttpResponse("Hello, world")
+
 
 def api(request):
     if request.method == 'GET':
