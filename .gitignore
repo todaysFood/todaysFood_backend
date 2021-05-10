@@ -129,6 +129,8 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+todaysFood/
+
 
 # Spyder project settings
 .spyderproject

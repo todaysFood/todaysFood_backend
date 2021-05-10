@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import my_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'drf_yasg',
+    'rest_framework',
     'corsheaders',
     'api.apps.PlaceConfig',
     'django.contrib.admin',
@@ -84,7 +83,16 @@ WSGI_APPLICATION = 'placeproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = my_settings.DATABASES
+DATABASES = DATABASES = {
+    'default' : {
+	'ENGINE': 'django.db.backends.mysql',
+	'NAME': 'todayFood_webservice',
+	'USER': 'root',
+	'PASSWORD': 'passw0rd',
+	'HOST': 'todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com',
+	'PORT': '3306',
+    }
+}
 
 
 # Password validation
