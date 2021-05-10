@@ -1,12 +1,13 @@
 import requests
 import datetime
 
-query = {"맑음" : ["치킨", "피자", "탕수육", "고기"],
-                 "더움" : ["냉면", "빙수", "아이스크림", "밀면", "맥주"],
-                 "추움" : ["우동", "라멘", "라면", "샤브샤브", "국물", "짬뽕"],
-                 "비" : ["막걸리", "파전", "짬뽕"],
-                 "흐림": ["김밥", "떡볶이", "순대", "튀김"]
-                 }
+query = {"맑음": ["치킨", "피자", "탕수육", "고기"],
+         "더움": ["냉면", "빙수", "아이스크림", "밀면", "맥주"],
+         "추움": ["우동", "라멘", "라면", "샤브샤브", "국물", "짬뽕"],
+         "비": ["막걸리", "파전", "짬뽕"],
+         "흐림": ["김밥", "떡볶이", "순대", "튀김"]
+         }
+
 
 def today_weather(nx, ny):
     vilage_weather_url = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?"
@@ -15,10 +16,9 @@ def today_weather(nx, ny):
 
     today = datetime.datetime.today()
 
-    base_date = today.strftime("%Y%m%d") # "기준 날짜 ex.20151201
+    base_date = today.strftime("%Y%m%d")  # "기준 날짜 ex.20151201
     # print(type(base_date))
-    base_time = "0800" # 날씨 값 ex.0600는 6시를 말함.
-
+    base_time = "0800"  # 날씨 값 ex.0600는 6시를 말함.
 
     payload = "serviceKey=" + service_key + "&dataType=json&base_date=" + base_date + "&base_time=" + base_time + "&nx=" + nx + "&ny=" + ny
 
@@ -29,7 +29,6 @@ def today_weather(nx, ny):
         items = res.json().get('response').get('body').get('items').get('item')
     except Exception as e:
         return "맑음"
-
 
     data = dict()
     data['date'] = base_date
@@ -131,6 +130,5 @@ def today_weather(nx, ny):
             result = '맑음'
 
     return result
-
 
 # print(today_weather("60", "80"))

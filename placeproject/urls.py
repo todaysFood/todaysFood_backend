@@ -18,10 +18,7 @@ from django.urls import path, include, re_path
 from rest_framework.permissions import AllowAny
 from rest_framework import routers, permissions
 
-
-
 urlpatterns = [
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
 ]
-
