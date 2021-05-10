@@ -83,7 +83,16 @@ WSGI_APPLICATION = 'placeproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = my_settings.DATABASES
+DATABASES = DATABASES = {
+    'default' : {
+	'ENGINE': 'django.db.backends.mysql',
+	'NAME': 'todayFood_webservice',
+	'USER': 'root',
+	'PASSWORD': 'passw0rd',
+	'HOST': 'todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com',
+	'PORT': '3306',
+    }
+}
 
 
 # Password validation
