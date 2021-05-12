@@ -1,7 +1,7 @@
+from rest_framework.response import Response
 
-from django.shortcuts import render
+from posts.models import Posts
 
-from .models import Posts
 
 # Create your views here.
 def post_write(request):
@@ -9,7 +9,7 @@ def post_write(request):
         if request.POST['mainphoto']:
             pass
         else:
-            new_article=Posts.objects.create(
+            new_article = Posts.objects.create(
                 title=request.POST['postname'],
                 contents=request.POST['contents'],
                 author=request.POST['author'],
@@ -17,6 +17,6 @@ def post_write(request):
                 place_id=request.POST['place_id']
             )
 
-    return response({
+    return Response({
         "status": 200,
     })
