@@ -12,3 +12,8 @@ class EmptyValueException(APIException):
 class InValidLoginCredential(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = _("Request Credential is invalid.")
+
+
+class AlreadyExistUserIdentified(APIException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    default_detail = _("Already User ID Exist")

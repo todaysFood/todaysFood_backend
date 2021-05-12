@@ -30,12 +30,15 @@ class Register(APIView):
         if not (name and nick_name):
             raise define.EmptyValueException()
 
-        User.objects.create_user(
-            email=email,
-            password=password,
-            name=name,
-            nick_name=nick_name
-        )
+        try:
+            User.objects.create_user(
+                email=email,
+                password=password,
+                name=name,
+                nick_name=nick_name
+            )
+        except Exception as err:
+            raise define.AlreadyExistUserIdentified()
 
         return Response({
             "status": 200,
@@ -51,13 +54,13 @@ class ObtainToken(APIView):
         if not (email and password):
             raise define.EmptyValueException()
 
-        user = User.objects.get(email=email)
-
-        if check_password(password, user.password):
+        try:
+            user = User.objects.get(email=email)
+            if check_password(password, user.password):
+                user.last_login = timezone.now()
+                user.save()
             payload = jwt_payload_handler(user)
-            user.last_login = timezone.now()
-            user.save()
-        else:
+        except Exception as err:
             raise define.InValidLoginCredential()
 
         return Response({

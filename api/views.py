@@ -1,8 +1,8 @@
-from django.http import HttpResponse
-from . import weather_api, location_code_fetcher, kakao_local
-from django.http import HttpResponse
-from library.kakao import location_code_fetcher, kakao_local, weather_api
 import json
+
+from django.http import HttpResponse
+
+from library.kakao import location_code_fetcher, kakao_local, weather_api
 
 
 def index(request):
