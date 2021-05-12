@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'posts.apps.PostsConfig',
     'rest_framework',
     'corsheaders',
     'api.apps.PlaceConfig',
