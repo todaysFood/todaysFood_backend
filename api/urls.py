@@ -3,7 +3,8 @@ from django.conf.urls import url
 from . import views
 
 from .view import (
-    Member
+    Member,
+    Posts
 )
 
 urlpatterns = [
@@ -14,5 +15,7 @@ urlpatterns = [
     url(r"register$", Member.Register.as_view()),  # Register Member
 
     # Login (JWT)
-    url(r"login$", Member.ObtainToken.as_view())  # Member Login
+    url(r"login$", Member.ObtainToken.as_view()),  # Member Login
+
+    path('v1/post', Posts.new)
 ]
