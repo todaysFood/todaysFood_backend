@@ -1,5 +1,4 @@
 my_settings.py
-settings.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/django,python,flask
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python,flask
@@ -131,7 +130,7 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
-todaysFood/
+venv_todaysFood/
 
 
 # Spyder project settings
