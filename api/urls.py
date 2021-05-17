@@ -17,5 +17,6 @@ urlpatterns = [
     # Login (JWT)
     url(r"login$", Member.ObtainToken.as_view()),  # Member Login
 
-    path('v1/post', Posts.new)
+
+
 ]

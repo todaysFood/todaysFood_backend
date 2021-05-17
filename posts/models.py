@@ -14,5 +14,4 @@ class Posts(models.Model):
     content = models.TextField(verbose_name="내용")
     rating = models.DecimalField(max_digits=2, decimal_places=1, verbose_name="평점")
     place_id = models.IntegerField(default=0)
-    mainphoto = models.ImageField(blank=True, null=True)
 # Create your models here.
