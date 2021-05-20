@@ -44,6 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -128,7 +138,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
+ACCOUNT_USER_MODEL_USERNAME_FILED = 'email'
 
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
 ## JWT Setup
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
@@ -148,13 +162,14 @@ JWT_AUTH = {
 
     'JWT_SECRET_KEY': SECRET_KEY,
     'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_LEEWAY': 0,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1800),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=3),
-
-    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    #
+    'JWT_AUTH_HEADER_PREFIX': 'JWT ',
     'JWT_AUTH_COOKIE': True,
 }
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
