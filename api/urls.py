@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf.urls import url, include
-from . import views
 from rest_framework import routers
+from . import views
 from .view.Posts import PostViewSet
 
 from .view import (
@@ -10,7 +10,7 @@ from .view import (
 )
 
 router = routers.DefaultRouter()
-router.register('post', PostViewSet)
+router.register(r'post', PostViewSet)
 
 urlpatterns = [
     path('', views.index, name='index'),
