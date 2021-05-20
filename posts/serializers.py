@@ -6,4 +6,4 @@ class PostSerializer(ModelSerializer):
     # auth_username = ReadOnlyField(source='author.username')
     class Meta:
         model = Posts
-        fields = ('id', 'title', 'author', 'pub_date', 'content', 'rating', 'place_id')
+        fields = "__all__"
