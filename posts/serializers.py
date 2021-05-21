@@ -1,8 +1,9 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, ReadOnlyField
 from .models import Posts
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostSerializer(ModelSerializer):
+    # auth_username = ReadOnlyField(source='author.username')
     class Meta:
         model = Posts
-        fields = ('id', 'title', 'author', 'pub_date', 'content', 'rating', 'place_id')
+        fields = "__all__"

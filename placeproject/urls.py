@@ -22,13 +22,9 @@ from rest_framework.permissions import AllowAny
 from rest_framework import routers, permissions
 from api.view.Posts import PostViewSet
 
-router = routers.DefaultRouter()
-router.register('post', PostViewSet)
-
 urlpatterns = [
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
-    url(r'^', include(router.urls)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
