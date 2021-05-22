@@ -10,13 +10,13 @@ from posts.models import Posts
 
 
 # @permission_classes((IsAuthenticated, ))
-@authentication_classes((JSONWebTokenAuthentication,))
+# @authentication_classes((JSONWebTokenAuthentication,))
 class PostViewSet(ModelViewSet):
-    permission_classes = []
+    # permission_classes = []
     queryset = Posts.objects.all()
     serializer_class = PostSerializer
-    def post(self, request, format=None):
-        new_content = request.data['content']
-        new_title = request.data['title']
-        return Response("Post Added")
+    # def post(self, request, format=None):
+    #     new_content = request.data['content']
+    #     new_title = request.data['title']
+    #     return Response("Post Added")
 

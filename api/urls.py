@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh_jwt_token
 from . import views
 from .view.Posts import PostViewSet
 
@@ -25,4 +26,7 @@ urlpatterns = [
     # Post
     url(r"^", include(router.urls)),
 
+    url(r"^token-auth/", obtain_jwt_token),
+    url(r"^token-verify", verify_jwt_token),
+    url(r"^token-refresh", refresh_jwt_token),
 ]

@@ -15,7 +15,7 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
 class Register(APIView):
-
+    permission_classes = []
     def post(self, request):
         """ 회원 생성 API """
         email = request.data.get("email", None)
@@ -46,6 +46,7 @@ class Register(APIView):
 
 
 class ObtainToken(APIView):
+    permission_classes = []
     def post(self, request):
         """  JWT Token Obtain"""
         email = request.data.get("email", None)
