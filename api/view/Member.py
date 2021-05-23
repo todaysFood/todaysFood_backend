@@ -1,18 +1,15 @@
-from django.utils import timezone
 from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import check_password
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
-from rest_framework_jwt.settings import api_settings
+
+from ..serializer.JwtSerializer import CustomTokenObtaionSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from exceptions.policy import define
 
 User = get_user_model()
-
-jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
 class Register(APIView):
@@ -47,28 +44,5 @@ class Register(APIView):
         })
 
 
-class ObtainToken(APIView):
-    permission_classes = (permissions.AllowAny,)
-
-    def post(self, request):
-        """  JWT Token Obtain"""
-        email = request.data.get("email", None)
-        password = request.data.get("password", None)
-
-        if not (email and password):
-            raise define.EmptyValueException()
-
-        try:
-            user = User.objects.get(email=email)
-            if check_password(password, user.password):
-                user.last_login = timezone.now()
-                user.save()
-            payload = jwt_payload_handler(user)
-            request.session['user'] = payload
-        except Exception as err:
-            raise define.InValidLoginCredential()
-
-        return Response({
-            "access-token01": "JWT " + jwt_encode_handler(payload),
-            "access-token02": "Bearer " + jwt_encode_handler(payload)
-        })
+class JwtObtainView(TokenObtainPairView):
+    serializer_class = CustomTokenObtaionSerializer
