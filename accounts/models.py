@@ -47,6 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_authentication = models.BooleanField(default=True)
 
     objects = UserManager()
 
@@ -63,3 +64,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_nickname(self):
         return self.nick_name
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+

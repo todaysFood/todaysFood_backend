@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import check_password
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import permissions
 from rest_framework_jwt.settings import api_settings
 
 from exceptions.policy import define
@@ -15,7 +16,8 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
 class Register(APIView):
-    permission_classes = []
+    permission_classes = (permissions.AllowAny,)
+
     def post(self, request):
         """ 회원 생성 API """
         email = request.data.get("email", None)
@@ -46,7 +48,8 @@ class Register(APIView):
 
 
 class ObtainToken(APIView):
-    permission_classes = []
+    permission_classes = (permissions.AllowAny,)
+
     def post(self, request):
         """  JWT Token Obtain"""
         email = request.data.get("email", None)
@@ -61,9 +64,11 @@ class ObtainToken(APIView):
                 user.last_login = timezone.now()
                 user.save()
             payload = jwt_payload_handler(user)
+            request.session['user'] = payload
         except Exception as err:
             raise define.InValidLoginCredential()
 
         return Response({
-            "access-token": "JWT " + jwt_encode_handler(payload)
+            "access-token01": "JWT " + jwt_encode_handler(payload),
+            "access-token02": "Bearer " + jwt_encode_handler(payload)
         })

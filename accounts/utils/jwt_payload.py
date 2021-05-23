@@ -4,11 +4,13 @@ from rest_framework_jwt.settings import api_settings
 
 
 def jwt_payload_handler(user):
+
     payload = {
         'email': user.email,
         'nick_name': user.nick_name,
         'exp': datetime.utcnow() + api_settings.JWT_EXPIRATION_DELTA
     }
+    print(payload)
     # Include original issued at time for a brand new token,
     # to allow token refresh
     if api_settings.JWT_ALLOW_REFRESH:
@@ -26,4 +28,4 @@ def jwt_payload_handler(user):
 
 
 def jwt_get_user_email_from_payload_handler(payload):
-    return payload.get("email")
+    return payload.data.get("email")

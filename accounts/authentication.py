@@ -7,10 +7,10 @@ from rest_framework_jwt.authentication import (
     BaseJSONWebTokenAuthentication,
     JSONWebTokenAuthentication
 )
-from .jwt_payload import jwt_get_user_email_from_payload_handler
+from .utils.jwt_payload import jwt_get_user_email_from_payload_handler
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
-jwt_get_user_email_from_payload = jwt_get_user_email_from_payload_handler
+jwt_get_user_email_from_payload_handler = jwt_get_user_email_from_payload_handler
 
 User = get_user_model()
 
@@ -24,7 +24,7 @@ class CustomBaseJSONWebTokenAuthentication(BaseJSONWebTokenAuthentication):
         """
         Returns an active user that matches the payload's user id and email.
         """
-        email = jwt_get_user_email_from_payload(payload)
+        email = jwt_get_user_email_from_payload_handler(payload)
         if not email:
             msg = _('Invalid payload.')
             raise exceptions.AuthenticationFailed(msg)
