@@ -22,6 +22,9 @@ urlpatterns = [
     url(r"^login$", Member.JwtObtainView.as_view()),  # Member Login
 
     # Post
-    url(r"^post$", Publisher.Feed.as_view()),  # post viewset 추가
+    url(r"^post/$", Publisher.Feed.as_view()),  # post viewset 추가
+
+    # Postedit
+    url(r"^post/(?P<id>\d+)/edit/$", Publisher.FeedEdit.as_view(), name='postedit'),
 
 ]
