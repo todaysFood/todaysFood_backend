@@ -9,7 +9,7 @@ from posts.serializers import PostSerializer
 from posts.models import Posts
 
 
-# @permission_classes((IsAuthenticated, ))
+@permission_classes((IsAuthenticated, ))
 # @authentication_classes((JSONWebTokenAuthentication,))
 class PostViewSet(ModelViewSet):
     # permission_classes = []
