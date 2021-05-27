@@ -3,7 +3,10 @@ from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from posts.models import Posts
+from accounts.models import User
 from posts.serializers import PostSerializer
+
+
 # from posts.serializers import PostSerializer
 
 
@@ -21,9 +24,9 @@ class Feed(APIView):
 
         if serializer.is_valid():
             post = serializer.save()
-            post.author = request.user.nick_name
+            user_id = User.objects.get(id=request.user.id)
+            post.author = user_id
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print("error")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -33,9 +36,6 @@ class FeedEdit(APIView):
         queryset.author = request.user.email
 
         if queryset.author == request.user.email:
-
             serializer = PostSerializer(queryset, many=False)
             return Response(serializer.data)
         # return Response("serializer.data")
-
-
