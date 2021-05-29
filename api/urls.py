@@ -1,28 +1,30 @@
 from django.urls import path
-from django.conf.urls import url, include
-from rest_framework import routers
+from django.conf.urls import url
 from . import views
-from .view.Posts import PostViewSet
 
 from .view import (
     Member,
-    Posts
+    Publisher
 )
 
-router = routers.DefaultRouter()
-router.register(r'post', PostViewSet)
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView
+)
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('v1/place', views.api, name='api'),
 
     # Member
-    url(r"register$", Member.Register.as_view()),  # Register Member
+    url(r"^register$", Member.Register.as_view()),  # Register Member
 
     # Login (JWT)
-    url(r"login$", Member.ObtainToken.as_view()),  # Member Login
+    url(r"^login$", Member.JwtObtainView.as_view()),  # Member Login
 
     # Post
-    url(r"^", include(router.urls)),
+    url(r"^post/$", Publisher.Feed.as_view()),  # post viewset 추가
+
+    # Postedit
+    url(r"^post/(?P<id>\d+)/edit/$", Publisher.FeedEdit.as_view(), name='postedit'),
 
 ]

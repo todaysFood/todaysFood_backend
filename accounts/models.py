@@ -63,3 +63,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_nickname(self):
         return self.nick_name
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
