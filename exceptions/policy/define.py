@@ -17,3 +17,8 @@ class InValidLoginCredential(APIException):
 class AlreadyExistUserIdentified(APIException):
     status_code = status.HTTP_400_BAD_REQUEST
     default_detail = _("Already User ID Exist")
+
+
+class NotEqualToAuthor(APIException):
+    status_code = status.HTTP_400_BAD_REQUEST
+    default_detail = _("User info. does not match the Author")
