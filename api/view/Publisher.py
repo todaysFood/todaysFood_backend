@@ -11,12 +11,13 @@ from exceptions.policy import define
 
 # 게시글 목록 : 비회원도 접근 가능하도록 설정
 class Feed(APIView):
+    authentication_classes = ()
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, format=None):
         queryset = Posts.objects.all()
         serializer = PostSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 # 게시글 쓰기 : 회원 권한 필요

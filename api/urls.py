@@ -22,15 +22,15 @@ urlpatterns = [
     url(r"^login$", Member.JwtObtainView.as_view()),  # Member Login
 
     # Post 목록
-    url(r"^post/$", Publisher.Feed.as_view()),  # Post List
+    url(r"^post$", Publisher.Feed.as_view()),  # Post List
 
     # Post 작성
-    url(r"^post/write/$", Publisher.FeedWrite.as_view()),
+    url(r"^post/write$", Publisher.FeedWrite.as_view()),
 
     # Post 상세보기
-    url(r"^post/(?P<id>\d+)/$", Publisher.FeedDetail.as_view(), name='postdetail'),  # Post Detail
+    url(r"^post/(?P<id>\d+)$", Publisher.FeedDetail.as_view(), name='postdetail'),  # Post Detail
 
     # Post 수정/삭제하기
-    url(r"^post/(?P<id>\d+)/edit/$", Publisher.FeedEdit.as_view(), name='postedit'),  # Post Edit/Delete
+    url(r"^post/(?P<id>\d+)/edit$", Publisher.FeedEdit.as_view(), name='postedit'),  # Post Edit/Delete
 
 ]
