@@ -1,6 +1,5 @@
 from datetime import (
     datetime,
-    timedelta
 )
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
