@@ -9,7 +9,7 @@ def index(request):
     return HttpResponse("Hello, world")
 
 
-def api(request):
+def local_api(request):
     if request.method == 'GET':
         kakao = kakao_local.kakao_local()
 
@@ -29,3 +29,16 @@ def api(request):
         response = json.dumps(res, ensure_ascii=False)
         return HttpResponse(response, content_type='application/json; charset=utf-8')
         # return HttpResponse(x)
+
+
+def food_api(request):
+    if request.method == 'GET':
+        x = request.GET.get('x')
+        y = request.GET.get('y')
+
+        grid_x, grid_y = location_code_fetcher.mapToGrid(float(y), float(x))
+        weather = weather_api.today_weather(grid_x, grid_y)
+
+        foods = weather_api.query.get(weather)
+        response = json.dumps(foods, ensure_ascii=False)
+        return HttpResponse(response, content_type='application/json; charset=utf-8')

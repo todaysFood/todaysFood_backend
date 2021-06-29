@@ -14,7 +14,8 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('', KakaoLocal.index),
 
-    path('place/', KakaoLocal.api),
+    path('v1/place/', KakaoLocal.local_api),
+    path('v1/food/', KakaoLocal.food_api),
 
     # Member
     path('register/', Member.Register.as_view()),  # Register Member
