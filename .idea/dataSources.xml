@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com" uuid="eda2d513-900c-4989-941a-9fd1f6ba5d90">
+    <data-source source="LOCAL" name="@todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com" uuid="99316e2b-6b6b-4d05-939d-a17d54db1ba3">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="todayFood_webservice@todayfood-webservice.chjvljwllphp.ap-northeast-2.rds.amazonaws.com" uuid="3d412d63-3242-4184-b4aa-f5352a7e2577">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
